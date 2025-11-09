@@ -73,60 +73,33 @@ Reply to: ${email}
       `
     };
 
-    // Send email using Resend (free tier: 3000 emails/month)
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env.RESEND_API_KEY || 're_demo_key'}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: 'noreply@yourdomain.com', // You'll need to verify your domain
-        to: ['jithinkjacob@live.com'],
-        subject: emailContent.subject,
-        html: emailContent.html,
-        text: emailContent.text,
-        reply_to: email,
-      }),
+    // Use Nodemailer with Gmail SMTP (most reliable)
+    const nodemailer = require('nodemailer');
+    
+    // Create transporter using Gmail
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER || 'your-email@gmail.com',
+        pass: process.env.GMAIL_APP_PASSWORD || 'your-app-password'
+      }
     });
 
-    if (!response.ok) {
-      // Fallback to Formspree if Resend fails
-      const formspreeResponse = await fetch('https://formspree.io/f/xpzgkqko', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: fullName,
-          email: email,
-          phone: phone,
-          preferredDate: preferredDate,
-          message: message || 'No additional message provided',
-          submittedAt: new Date(submittedAt).toLocaleString(),
-          _replyto: email,
-          _subject: `New Consultation Request from ${fullName}`,
-        }),
-      });
+    // Send email
+    const info = await transporter.sendMail({
+      from: `"Website Contact Form" <${process.env.GMAIL_USER || 'noreply@example.com'}>`,
+      to: 'jithinkjacob@live.com',
+      replyTo: email,
+      subject: `New Consultation Request from ${fullName}`,
+      html: emailContent.html,
+      text: emailContent.text
+    });
 
-      if (!formspreeResponse.ok) {
-        throw new Error('Both email services failed');
-      }
-
-      return res.status(200).json({ 
-        success: true, 
-        message: 'Email sent successfully via Formspree',
-        service: 'formspree'
-      });
-    }
-
-    const result = await response.json();
-    
     return res.status(200).json({ 
       success: true, 
-      message: 'Email sent successfully via Resend',
-      service: 'resend',
-      id: result.id 
+      message: 'Email sent successfully',
+      service: 'nodemailer',
+      messageId: info.messageId
     });
 
   } catch (error) {

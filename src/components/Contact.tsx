@@ -10,17 +10,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  CalendarIcon,
-  MessageCircle,
-  Phone,
-  Mail,
-  MapPin,
-  Send,
-  CheckCircle,
-  AlertCircle,
-  Loader2,
-} from "lucide-react";
+import { CalendarIcon, MessageCircle, Send, Loader2 } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import AnimatedSection from "./AnimatedSection";
@@ -52,29 +42,47 @@ const Contact = () => {
 
     try {
       const submissionData = {
-        ...formData,
-        preferredDate: date ? format(date, "PPP") : "Not specified",
-        submittedAt: new Date().toISOString(),
+        access_key: "fda31f0b-95fd-41d9-911a-bfbbcb026922", // Replace with your actual key
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        preferred_date: date ? format(date, "PPP") : "Not specified",
+        message: formData.message || "No additional message provided",
+        subject: `New Consultation Request from ${formData.fullName}`,
       };
 
-      // Send email using simple, reliable method
-      await sendEmailSimple(submissionData);
-
-      // Success feedback
-      toast.success("Consultation request sent successfully!", {
-        description:
-          "Your message has been sent directly to jithinkjacob@live.com. We'll get back to you within 24 hours.",
-        duration: 5000,
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(submissionData),
       });
 
-      // Reset form
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        message: "",
-      });
-      setDate(undefined);
+      const result = await response.json();
+
+      // Debug: Log the response
+      console.log("Web3Forms Response:", result);
+
+      if (result.success) {
+        toast.success("Consultation request sent successfully!", {
+          description:
+            "Your message has been sent to jithinkjacob@live.com. We'll get back to you within 24 hours.",
+          duration: 5000,
+        });
+
+        // Reset form
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+        setDate(undefined);
+      } else {
+        throw new Error(result.message || "Failed to send email");
+      }
     } catch (error) {
       console.error("Form submission error:", error);
 
@@ -88,42 +96,8 @@ const Contact = () => {
     }
   };
 
-  // Send email using simple, reliable method
-  const sendEmailSimple = async (data: {
-    fullName: string;
-    email: string;
-    phone: string;
-    message: string;
-    preferredDate: string;
-    submittedAt: string;
-  }) => {
-    // Use Getform.io - simple, reliable, no setup required
-    const response = await fetch("https://getform.io/f/bqonvxga", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: data.fullName,
-        email: data.email,
-        phone: data.phone,
-        preferredDate: data.preferredDate,
-        message: data.message || "No additional message provided",
-        submittedAt: new Date(data.submittedAt).toLocaleString(),
-        subject: `New Consultation Request from ${data.fullName}`,
-        to: "jithinkjacob@live.com",
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to send email");
-    }
-
-    return { success: true, service: "getform" };
-  };
-
   const handleWhatsAppClick = () => {
-    const phoneNumber = "393391282519"; // WhatsApp number without + and spaces
+    const phoneNumber = "393391282519";
     const message = encodeURIComponent(
       "Hi! I'm interested in booking a consultation for healing and hypnosis services."
     );

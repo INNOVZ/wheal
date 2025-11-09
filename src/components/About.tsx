@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import priyaPortrait from "@/assets/priya-portrait.jpg";
+import priyaPortrait from "@/assets/priya_singh.jpeg";
 import { CheckCircle2 } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 

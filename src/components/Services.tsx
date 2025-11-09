@@ -5,7 +5,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Brain, Clock, TrendingUp, Sparkles } from "lucide-react";
+import {
+  Brain,
+  Clock,
+  TrendingUp,
+  Sparkles
+} from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
 const Services = () => {
@@ -89,9 +94,11 @@ const Services = () => {
                       {service.items.map((item, itemIndex) => (
                         <li
                           key={itemIndex}
-                          className="flex items-start gap-2 text-muted-foreground"
+                          className="flex items-center gap-2 text-muted-foreground"
                         >
-                          <span className="text-primary mt-1">•</span>
+                          <span className="text-primary mt-1">
+                            {/* <Icon className="w-4 h-4" /> */}
+                          </span>
                           <span className="text-sm">{item}</span>
                         </li>
                       ))}

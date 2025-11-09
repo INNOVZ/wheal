@@ -1,4 +1,5 @@
 import { Mail, MapPin, Phone, Globe } from "lucide-react";
+import logo from "@/assets/togetherweheal.png";
 
 const Footer = () => {
   return (
@@ -7,25 +8,30 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold text-foreground mb-4">
-              Together We <span className="text-primary">Heal</span>
-            </h3>
-            <p className="text-muted-foreground">
-              Professional Hypnosis & Energy Healing Services
-            </p>
+            <img
+              src={logo}
+              alt="Priya Singh - Hypnosis Professional"
+              className="w-[200px] h-auto rounded-lg transform hover:scale-105 transition-transform duration-700"
+            />
           </div>
 
           {/* Contact */}
           <div>
             <h4 className="font-semibold text-foreground mb-4">Contact</h4>
             <div className="space-y-3">
-              <a href="tel:+971528678679" className="flex items-start gap-2 text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="tel:+971528678679"
+                className="flex items-start gap-2 text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Phone className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <span>+971 52 867 8679</span>
+                <span>+971 58 5093132</span>
               </a>
-              <a href="mailto:info@thedesertwhales.com" className="flex items-start gap-2 text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="mailto:info@thedesertwhales.com"
+                className="flex items-start gap-2 text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Mail className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <span>info@thedesertwhales.com</span>
+                <span>tweheal@gmail.com</span>
               </a>
             </div>
           </div>
@@ -35,22 +41,31 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Location</h4>
             <div className="flex items-start gap-2 text-muted-foreground">
               <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
-              <span className="text-sm">
-                M01-198, Commercial Bank of Dubai Building,<br />
-                Al Khabeesi, Dubai, UAE
-              </span>
+              <span className="text-sm">Dubai, UAE</span>
             </div>
           </div>
 
           {/* Website */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Visit Us Online</h4>
+            <h4 className="font-semibold text-foreground mb-4">
+              Visit Us Online
+            </h4>
             <div className="space-y-3">
-              <a href="https://thedesertwhales.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="https://thedesertwhales.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Globe className="w-5 h-5" />
                 <span>thedesertwhales.com</span>
               </a>
-              <a href="https://desertwhales.ae" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="https://desertwhales.ae"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Globe className="w-5 h-5" />
                 <span>desertwhales.ae</span>
               </a>
@@ -60,8 +75,17 @@ const Footer = () => {
 
         {/* Bottom */}
         <div className="pt-8 border-t border-border text-center text-muted-foreground text-sm">
-          <p>&copy; {new Date().getFullYear()} Together We Heal. All rights reserved.</p>
-          <p className="mt-2">Designed by Desert Whales Marketing Services</p>
+          <p>
+            &copy; {new Date().getFullYear()} Together We Heal. All rights
+            reserved.
+          </p>
+          <a
+            href="https://thedesertwhales.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p className="mt-2">Developed by Desert Whales</p>
+          </a>
         </div>
       </div>
     </footer>

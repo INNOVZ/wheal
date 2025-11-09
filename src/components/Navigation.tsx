@@ -4,6 +4,7 @@ import { Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import MobileMenu from "./MobileMenu";
 import SmoothNavLink from "./NavLink";
+import logo from "@/assets/togetherweheal.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,18 +38,14 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div
-            className="flex items-center gap-2 cursor-pointer"
+            className="gap-2 cursor-pointer"
             onClick={() => scrollToSection("#hero")}
           >
-            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center shadow-lg">
-              <Heart className="w-5 h-5 text-white" />
-            </div>
-            <div className="hidden sm:block">
-              <h1 className="font-bold text-xl text-foreground">Priya Singh</h1>
-              <p className="text-xs text-muted-foreground -mt-1">
-                Healing & Hypnosis
-              </p>
-            </div>
+            <img
+              src={logo}
+              alt="Priya Singh - Hypnosis Professional"
+              className="w-40 h-auto rounded-lg transform hover:scale-105 transition-transform duration-700"
+            />
           </div>
 
           {/* Desktop Navigation */}
