@@ -77,6 +77,7 @@ const Contact = () => {
       setDate(undefined);
     } catch (error) {
       console.error("Form submission error:", error);
+
       toast.error("Failed to send consultation request", {
         description:
           "Please try again or contact us directly at jithinkjacob@live.com",
@@ -87,7 +88,7 @@ const Contact = () => {
     }
   };
 
-  // Send email automatically using Vercel API endpoint
+  // Send email automatically using multiple reliable services
   const sendEmailAutomatically = async (data: {
     fullName: string;
     email: string;
@@ -96,22 +97,93 @@ const Contact = () => {
     preferredDate: string;
     submittedAt: string;
   }) => {
-    const response = await fetch("/api/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    // Try Formspree first (most reliable)
+    try {
+      const response = await fetch("https://formspree.io/f/xpzgkqko", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.fullName,
+          email: data.email,
+          phone: data.phone,
+          preferredDate: data.preferredDate,
+          message: data.message || "No additional message provided",
+          submittedAt: new Date(data.submittedAt).toLocaleString(),
+          _replyto: data.email,
+          _subject: `New Consultation Request from ${data.fullName}`,
+        }),
+      });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to send email");
+      if (response.ok) {
+        return await response.json();
+      }
+      throw new Error("Formspree failed");
+    } catch (error) {
+      console.log("Formspree failed, trying Web3Forms...", error);
     }
 
-    const result = await response.json();
-    console.log("Email sent successfully:", result);
-    return result;
+    // Try Web3Forms as backup
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "c9e03ac8-7bb5-4c61-9c44-6d6e0d6f7e8f", // Free Web3Forms key
+          name: data.fullName,
+          email: data.email,
+          phone: data.phone,
+          preferred_date: data.preferredDate,
+          message: data.message || "No additional message provided",
+          submitted_at: new Date(data.submittedAt).toLocaleString(),
+          subject: `New Consultation Request from ${data.fullName}`,
+          from_name: data.fullName,
+          to_email: "jithinkjacob@live.com",
+        }),
+      });
+
+      if (response.ok) {
+        return await response.json();
+      }
+      throw new Error("Web3Forms failed");
+    } catch (error) {
+      console.log("Web3Forms failed, trying Netlify...", error);
+    }
+
+    // Try Netlify Forms as final backup
+    try {
+      const formData = new FormData();
+      formData.append("form-name", "contact");
+      formData.append("name", data.fullName);
+      formData.append("email", data.email);
+      formData.append("phone", data.phone);
+      formData.append("preferredDate", data.preferredDate);
+      formData.append(
+        "message",
+        data.message || "No additional message provided"
+      );
+      formData.append(
+        "submittedAt",
+        new Date(data.submittedAt).toLocaleString()
+      );
+
+      const response = await fetch("/", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        return { success: true, service: "netlify" };
+      }
+      throw new Error("All services failed");
+    } catch (error) {
+      throw new Error(
+        "Unable to send email. All services are currently unavailable."
+      );
+    }
   };
 
   const handleWhatsAppClick = () => {
