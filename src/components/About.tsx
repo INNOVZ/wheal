@@ -16,7 +16,7 @@ const About = () => {
       id="about"
       className="py-20 bg-gradient-to-b from-background to-accent/20"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Image Side */}
           <AnimatedSection animation="scale-in" delay={200}>
