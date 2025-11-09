@@ -97,7 +97,7 @@ const Contact = () => {
   };
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "393391282519";
+    const phoneNumber = "971585093132";
     const message = encodeURIComponent(
       "Hi! I'm interested in booking a consultation for healing and hypnosis services."
     );
@@ -124,7 +124,7 @@ const Contact = () => {
             delay={200}
             className="lg:col-span-2"
           >
-            <Card className="shadow-xl border-border/50">
+            <Card className="shadow-xl w-11/12 lg:w-full border-border/50">
               <CardHeader>
                 <CardTitle className="text-2xl text-foreground">
                   Book Your Free Consultation
@@ -249,7 +249,7 @@ const Contact = () => {
           <div className="space-y-6">
             {/* WhatsApp Quick Connect */}
             <AnimatedSection animation="slide-left" delay={400}>
-              <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white shadow-xl border-0">
+              <Card className="bg-gradient-to-br w-11/12 lg:w-full from-green-500 to-green-600 text-white shadow-xl border-0">
                 <CardContent className="pt-6">
                   <div className="text-center">
                     <MessageCircle className="w-12 h-12 mx-auto mb-4" />

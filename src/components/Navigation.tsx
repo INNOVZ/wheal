@@ -38,13 +38,13 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div
-            className="gap-2 cursor-pointer"
+            className="cursor-pointer"
             onClick={() => scrollToSection("#hero")}
           >
             <img
               src={logo}
               alt="Priya Singh - Hypnosis Professional"
-              className="w-40 h-auto rounded-lg transform hover:scale-105 transition-transform duration-700"
+              className="w-32 sm:w-40 h-auto transform hover:scale-105 transition-transform duration-300"
             />
           </div>
 

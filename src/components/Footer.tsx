@@ -7,11 +7,11 @@ const Footer = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
-          <div>
+          <div className="">
             <img
               src={logo}
               alt="Priya Singh - Hypnosis Professional"
-              className="w-[200px] h-auto rounded-lg transform hover:scale-105 transition-transform duration-700"
+              className="w-full lg:mt-[-25px] lg:w-[250px] h-auto rounded-lg transform hover:scale-105 transition-transform duration-700"
             />
           </div>
 
@@ -52,22 +52,13 @@ const Footer = () => {
             </h4>
             <div className="space-y-3">
               <a
-                href="https://thedesertwhales.com"
+                href="https://www.togetherweheal.ae/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
               >
                 <Globe className="w-5 h-5" />
-                <span>thedesertwhales.com</span>
-              </a>
-              <a
-                href="https://desertwhales.ae"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Globe className="w-5 h-5" />
-                <span>desertwhales.ae</span>
+                <span>togetherweheal.ae</span>
               </a>
             </div>
           </div>

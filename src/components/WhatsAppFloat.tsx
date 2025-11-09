@@ -19,7 +19,7 @@ const WhatsAppFloat = () => {
   }, []);
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "971528678679"; // WhatsApp number without + and spaces
+    const phoneNumber = "971585093132"; // WhatsApp number without + and spaces
     const message = encodeURIComponent(
       "Hi! I'm interested in learning more about your healing and hypnosis services."
     );

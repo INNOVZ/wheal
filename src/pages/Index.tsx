@@ -11,7 +11,7 @@ import { Toaster } from "sonner";
 
 const Index = () => {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
       <Navigation />
       <section id="hero">
         <Hero />
