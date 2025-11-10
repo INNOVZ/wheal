@@ -4,6 +4,13 @@ import { Sparkles, Heart } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
 const Hero = () => {
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden w-full">
       {/* Background Image with Overlay */}
@@ -58,18 +65,21 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
+                onClick={() => scrollToSection("#contact")}
                 className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all group"
               >
+                {" "}
+                <Heart className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
                 Book a Free Consultation
               </Button>
-              <Button
+              {/* <Button
                 size="lg"
                 variant="outline"
                 className="text-lg px-8 py-6 hover:bg-accent transition-all group"
               >
                 <Heart className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
                 Start Your Healing Journey
-              </Button>
+              </Button> */}
             </div>
           </AnimatedSection>
         </div>

@@ -39,8 +39,8 @@ const About = () => {
             </h2>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              With years of experience in clinical Hypnosis and emotional
-              wellness, Priya Singh founded{" "}
+              With years of experience in Hypnosis and emotional wellness, Priya
+              Singh founded{" "}
               <span className="font-semibold text-foreground">
                 Together We Heal
               </span>{" "}
