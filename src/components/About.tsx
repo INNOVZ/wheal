@@ -5,7 +5,7 @@ import AnimatedSection from "./AnimatedSection";
 
 const About = () => {
   const highlights = [
-    "Years of experience in clinical Hypnosis",
+    "Years of experience in Hypnosis",
     "Specialized in emotional wellness",
     "Holistic healing approach",
     "Mind, body, and soul integration",
