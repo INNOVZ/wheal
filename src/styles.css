@@ -10,21 +10,24 @@
     font-style: normal;
     font-weight: 200 700;
     font-display: swap;
-    src: url("https://fonts.gstatic.com/s/oswald/v53/TK3iWkUHHAIjg7s-cLELuw.woff2") format("woff2");
+    src: url("https://fonts.gstatic.com/s/oswald/v53/TK3iWkUHHAIjg7s-cLELuw.woff2")
+      format("woff2");
   }
   @font-face {
     font-family: "Inter";
     font-style: normal;
     font-weight: 300 700;
     font-display: swap;
-    src: url("https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2") format("woff2");
+    src: url("https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2")
+      format("woff2");
   }
   @font-face {
     font-family: "JetBrains Mono";
     font-style: normal;
     font-weight: 400 600;
     font-display: swap;
-    src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2") format("woff2");
+    src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2")
+      format("woff2");
   }
 }
 
@@ -67,11 +70,13 @@
   --radius: 0.75rem;
 
   /* Together We Heal palette — white + emerald + deep teal */
-  --cream: oklch(1 0 0);                 /* white */
-  --cream-deep: oklch(0.97 0.005 180);   /* very soft tinted off-white for cards */
-  --olive: oklch(0.68 0.16 165);         /* #00b881 emerald */
-  --olive-deep: oklch(0.27 0.025 200);   /* #192f33 deep teal */
-  --neon: oklch(0.68 0.16 165);          /* accent emerald */
+  --cream: oklch(1 0 0); /* white */
+  --cream-deep: oklch(
+    0.97 0.005 180
+  ); /* very soft tinted off-white for cards */
+  --olive: oklch(0.68 0.16 165); /* #00b881 emerald */
+  --olive-deep: oklch(0.27 0.025 200); /* #192f33 deep teal */
+  --neon: oklch(0.68 0.16 165); /* accent emerald */
   --clay: oklch(0.27 0.025 200);
 
   --background: var(--cream);
@@ -111,13 +116,17 @@
   * {
     border-color: var(--color-border);
   }
-  html, body {
+  html,
+  body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     font-weight: 300;
     letter-spacing: 0.01em;
@@ -128,7 +137,8 @@
     font-weight: 200;
     letter-spacing: 0.02em;
   }
-  .font-mono, .label-mono {
+  .font-mono,
+  .label-mono {
     font-family: var(--font-mono);
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -137,14 +147,27 @@
 
 /* Subtle floating */
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
-.animate-float { animation: float-slow 6s ease-in-out infinite; }
+.animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
 
 /* Marquee */
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
-.animate-marquee { animation: marquee 38s linear infinite; }
+.animate-marquee {
+  animation: marquee 38s linear infinite;
+}

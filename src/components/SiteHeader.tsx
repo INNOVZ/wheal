@@ -6,7 +6,9 @@ import logoWhite from "@/assets/logo-white.png";
 
 type Variant = "default" | "overlay";
 
-export function SiteHeader({ variant = "default" }: { variant?: Variant } = {}) {
+export function SiteHeader({
+  variant = "default",
+}: { variant?: Variant } = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -22,10 +24,14 @@ export function SiteHeader({ variant = "default" }: { variant?: Variant } = {}) 
   const wrapperCls =
     variant === "overlay"
       ? `fixed top-0 left-0 right-0 z-30 transition-colors duration-300 ${
-          scrolled ? "bg-background/90 backdrop-blur border-b border-foreground/10" : "bg-transparent"
+          scrolled
+            ? "bg-background/90 backdrop-blur border-b border-foreground/10"
+            : "bg-transparent"
         }`
       : "sticky top-0 z-30 bg-background/85 backdrop-blur";
-  const mutedCls = isOverlayMode ? "text-white/70 hover:text-white" : "text-foreground/70 hover:text-foreground";
+  const mutedCls = isOverlayMode
+    ? "text-white/70 hover:text-white"
+    : "text-foreground/70 hover:text-foreground";
   const activeCls = isOverlayMode ? "text-white" : "text-foreground";
   const ctaCls = isOverlayMode
     ? "bg-white text-black border-white hover:bg-white/90"
@@ -37,7 +43,12 @@ export function SiteHeader({ variant = "default" }: { variant?: Variant } = {}) 
   return (
     <header className={wrapperCls}>
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-6">
-        <Link to="/" aria-label="Together We Heal — Home" className="flex items-center gap-2" onClick={() => setOpen(false)}>
+        <Link
+          to="/"
+          aria-label="Together We Heal — Home"
+          className="flex items-center gap-2"
+          onClick={() => setOpen(false)}
+        >
           <img
             src={isOverlayMode ? logoWhite : logoFull}
             alt="Together We Heal"
@@ -46,11 +57,25 @@ export function SiteHeader({ variant = "default" }: { variant?: Variant } = {}) 
         </Link>
 
         <nav className="hidden md:flex items-center gap-2">
-          <HeaderLink to="/services" mutedCls={mutedCls} activeCls={activeCls}>Services</HeaderLink>
-          <HeaderLink to="/about" mutedCls={mutedCls} activeCls={activeCls}>About</HeaderLink>
-          <HeaderLink to="/blog" mutedCls={mutedCls} activeCls={activeCls}>Blog</HeaderLink>
-          <HeaderLink to="/why-choose-us" mutedCls={mutedCls} activeCls={activeCls}>Why Us</HeaderLink>
-          <HeaderLink to="/contact" mutedCls={mutedCls} activeCls={activeCls}>Contact</HeaderLink>
+          <HeaderLink to="/services" mutedCls={mutedCls} activeCls={activeCls}>
+            Services
+          </HeaderLink>
+          <HeaderLink to="/about" mutedCls={mutedCls} activeCls={activeCls}>
+            About
+          </HeaderLink>
+          <HeaderLink to="/blog" mutedCls={mutedCls} activeCls={activeCls}>
+            Blog
+          </HeaderLink>
+          <HeaderLink
+            to="/why-choose-us"
+            mutedCls={mutedCls}
+            activeCls={activeCls}
+          >
+            Why Us
+          </HeaderLink>
+          <HeaderLink to="/contact" mutedCls={mutedCls} activeCls={activeCls}>
+            Contact
+          </HeaderLink>
         </nav>
 
         <div className="flex items-center gap-3">
@@ -80,11 +105,41 @@ export function SiteHeader({ variant = "default" }: { variant?: Variant } = {}) 
         } ${isOverlayMode ? "bg-black/80 backdrop-blur" : "bg-background border-t border-foreground/10"}`}
       >
         <nav className="px-6 py-4 flex flex-col gap-1">
-          <MobileLink to="/services" overlay={isOverlayMode} onClick={() => setOpen(false)}>Services</MobileLink>
-          <MobileLink to="/about" overlay={isOverlayMode} onClick={() => setOpen(false)}>About</MobileLink>
-          <MobileLink to="/blog" overlay={isOverlayMode} onClick={() => setOpen(false)}>Blog</MobileLink>
-          <MobileLink to="/why-choose-us" overlay={isOverlayMode} onClick={() => setOpen(false)}>Why Us</MobileLink>
-          <MobileLink to="/contact" overlay={isOverlayMode} onClick={() => setOpen(false)}>Contact</MobileLink>
+          <MobileLink
+            to="/services"
+            overlay={isOverlayMode}
+            onClick={() => setOpen(false)}
+          >
+            Services
+          </MobileLink>
+          <MobileLink
+            to="/about"
+            overlay={isOverlayMode}
+            onClick={() => setOpen(false)}
+          >
+            About
+          </MobileLink>
+          <MobileLink
+            to="/blog"
+            overlay={isOverlayMode}
+            onClick={() => setOpen(false)}
+          >
+            Blog
+          </MobileLink>
+          <MobileLink
+            to="/why-choose-us"
+            overlay={isOverlayMode}
+            onClick={() => setOpen(false)}
+          >
+            Why Us
+          </MobileLink>
+          <MobileLink
+            to="/contact"
+            overlay={isOverlayMode}
+            onClick={() => setOpen(false)}
+          >
+            Contact
+          </MobileLink>
           <Link
             to="/contact"
             onClick={() => setOpen(false)}
@@ -104,7 +159,14 @@ function HeaderLink({
   mutedCls,
   activeCls,
 }: {
-  to: "/" | "/about" | "/services" | "/why-choose-us" | "/testimonials" | "/blog" | "/contact";
+  to:
+    | "/"
+    | "/about"
+    | "/services"
+    | "/why-choose-us"
+    | "/testimonials"
+    | "/blog"
+    | "/contact";
   children: React.ReactNode;
   mutedCls: string;
   activeCls: string;
@@ -113,7 +175,9 @@ function HeaderLink({
     <Link
       to={to}
       className={`font-mono text-xs md:px-2 lg:px-3 py-2 transition-colors ${mutedCls}`}
-      activeProps={{ className: `font-mono text-xs md:px-2 lg:px-3 py-2 ${activeCls}` }}
+      activeProps={{
+        className: `font-mono text-xs md:px-2 lg:px-3 py-2 ${activeCls}`,
+      }}
     >
       {children}
     </Link>
@@ -126,12 +190,21 @@ function MobileLink({
   overlay,
   onClick,
 }: {
-  to: "/" | "/about" | "/services" | "/why-choose-us" | "/testimonials" | "/blog" | "/contact";
+  to:
+    | "/"
+    | "/about"
+    | "/services"
+    | "/why-choose-us"
+    | "/testimonials"
+    | "/blog"
+    | "/contact";
   children: React.ReactNode;
   overlay: boolean;
   onClick: () => void;
 }) {
-  const base = overlay ? "text-white/85 hover:text-white" : "text-foreground/80 hover:text-foreground";
+  const base = overlay
+    ? "text-white/85 hover:text-white"
+    : "text-foreground/80 hover:text-foreground";
   return (
     <Link
       to={to}

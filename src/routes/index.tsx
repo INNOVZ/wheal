@@ -2,7 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ContactCTA } from "@/components/ContactCTA";
-import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import practitioner from "@/assets/priya-profile.png";
 import serviceMind from "@/assets/service-mind.jpg";
@@ -14,9 +19,19 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Together We Heal — Hypnosis & Spiritual Healing" },
-      { name: "description", content: "Heal, transform, and awaken the power within through hypnosis, inner child work, and energy healing with Priya Singh." },
-      { property: "og:title", content: "Together We Heal — Hypnosis & Spiritual Healing" },
-      { property: "og:description", content: "Deep emotional and spiritual healing — mind, body, and soul." },
+      {
+        name: "description",
+        content:
+          "Heal, transform, and awaken the power within through hypnosis, inner child work, and energy healing with Priya Singh.",
+      },
+      {
+        property: "og:title",
+        content: "Together We Heal — Hypnosis & Spiritual Healing",
+      },
+      {
+        property: "og:description",
+        content: "Deep emotional and spiritual healing — mind, body, and soul.",
+      },
     ],
   }),
   component: Home,
@@ -45,7 +60,8 @@ const slides = [
     eyebrow: "inner child",
     title: "FIND YOUR CALM",
     body: "Practices that release childhood wounds and bring lasting emotional peace.",
-    image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=2000&q=80",
+    image:
+      "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=2000&q=80",
     alt: "Woman with eyes closed in soft sunlight",
   },
   {
@@ -54,7 +70,8 @@ const slides = [
     eyebrow: "energy healing",
     title: "RESTORE YOUR POWER",
     body: "Chakra balancing and aura cleansing rituals that renew vitality from within.",
-    image: "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=2000&q=80",
+    image:
+      "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=2000&q=80",
     alt: "Hands lifted in soft golden light",
   },
   {
@@ -63,7 +80,8 @@ const slides = [
     eyebrow: "regression",
     title: "AWAKEN THE WITHIN",
     body: "Past life and age regression sessions that reveal direction and lasting purpose.",
-    image: "https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=2000&q=80",
+    image:
+      "https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=2000&q=80",
     alt: "Woman meditating outdoors at golden hour",
   },
   {
@@ -72,7 +90,8 @@ const slides = [
     eyebrow: "transformation",
     title: "BREAK THE PATTERN",
     body: "Subconscious reprogramming for habits, fears, weight, and relationships.",
-    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=2000&q=80",
+    image:
+      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=2000&q=80",
     alt: "Person stretching arms wide in nature",
   },
 ];
@@ -81,11 +100,15 @@ function Hero() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), 6000);
+    const id = setInterval(
+      () => setIndex((i) => (i + 1) % slides.length),
+      6000,
+    );
     return () => clearInterval(id);
   }, []);
 
-  const go = (dir: 1 | -1) => setIndex((i) => (i + dir + slides.length) % slides.length);
+  const go = (dir: 1 | -1) =>
+    setIndex((i) => (i + dir + slides.length) % slides.length);
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
@@ -97,7 +120,11 @@ function Hero() {
           style={{ opacity: i === index ? 1 : 0 }}
           aria-hidden={i !== index}
         >
-          <img src={s.image} alt={s.alt} className="absolute inset-0 h-full w-full object-cover" />
+          <img
+            src={s.image}
+            alt={s.alt}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/15 to-black/70" />
         </div>
       ))}
@@ -161,28 +188,33 @@ const services = [
     tag: "inner work",
     title: "Hypnosis Therapy",
     serviceSlug: "hypnosis-therapy",
-    description: "Subconscious healing that releases deep emotional blocks and reprograms limiting patterns.",
+    description:
+      "Subconscious healing that releases deep emotional blocks and reprograms limiting patterns.",
     image: serviceMind,
   },
   {
     tag: "inner work",
     title: "Inner Child Healing",
     serviceSlug: "inner-child-healing",
-    description: "Heal childhood wounds and emotional triggers to feel safer and more whole within yourself.",
-    image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=1200&q=80",
+    description:
+      "Heal childhood wounds and emotional triggers to feel safer and more whole within yourself.",
+    image:
+      "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=1200&q=80",
   },
   {
     tag: "energy",
     title: "Energy Healing",
     serviceSlug: "energy-healing",
-    description: "Aura cleansing and vibrational work to clear blockages and restore inner harmony.",
+    description:
+      "Aura cleansing and vibrational work to clear blockages and restore inner harmony.",
     image: serviceEnergy,
   },
   {
     tag: "regression",
     title: "Past Life Regression",
     serviceSlug: "past-life-regression-therapy",
-    description: "Access memories beyond this lifetime to dissolve recurring fears and karmic patterns.",
+    description:
+      "Access memories beyond this lifetime to dissolve recurring fears and karmic patterns.",
     image: serviceRegression,
   },
 ];
@@ -191,7 +223,9 @@ function Programs() {
   return (
     <section className="px-6 md:px-10 max-w-[1400px] mx-auto pt-24 md:pt-32">
       <div className="flex items-end justify-between mb-8">
-        <h2 className="font-display text-5xl md:text-6xl text-foreground">SERVICES</h2>
+        <h2 className="font-display text-5xl md:text-6xl text-foreground">
+          SERVICES
+        </h2>
         <Link
           to="/services"
           className="hidden md:inline-flex items-center gap-2 rounded-full border border-foreground/40 px-4 py-2 font-mono text-xs hover:bg-foreground hover:text-background transition-colors"
@@ -243,14 +277,30 @@ function Programs() {
 
 function Testimonials() {
   const quotes = [
-    { quote: "Priya's sessions changed my life. I released fears I didn't know I had.", name: "Sara M.", city: "Dubai" },
-    { quote: "The past life regression helped me find closure after years of anxiety.", name: "Rohit K.", city: "Abu Dhabi" },
-    { quote: "A space of true compassion. I feel reconnected to myself again.", name: "Aisha N.", city: "Sharjah" },
+    {
+      quote:
+        "Priya's sessions changed my life. I released fears I didn't know I had.",
+      name: "Sara M.",
+      city: "Dubai",
+    },
+    {
+      quote:
+        "The past life regression helped me find closure after years of anxiety.",
+      name: "Rohit K.",
+      city: "Abu Dhabi",
+    },
+    {
+      quote: "A space of true compassion. I feel reconnected to myself again.",
+      name: "Aisha N.",
+      city: "Sharjah",
+    },
   ];
   return (
     <section className="px-6 md:px-10 max-w-[1400px] mx-auto pt-24 md:pt-32">
       <div className="flex items-end justify-between mb-8">
-        <h2 className="font-display text-5xl md:text-6xl text-foreground">TESTIMONIALS</h2>
+        <h2 className="font-display text-5xl md:text-6xl text-foreground">
+          TESTIMONIALS
+        </h2>
         <Link
           to="/testimonials"
           className="hidden md:inline-flex items-center gap-2 rounded-full border border-foreground/40 px-4 py-2 font-mono text-xs hover:bg-foreground hover:text-background transition-colors"
@@ -260,13 +310,20 @@ function Testimonials() {
       </div>
       <div className="grid md:grid-cols-3 gap-4">
         {quotes.map((q) => (
-          <figure key={q.name} className="rounded-3xl bg-cream-deep p-6 md:p-7 flex flex-col">
+          <figure
+            key={q.name}
+            className="rounded-3xl bg-cream-deep p-6 md:p-7 flex flex-col"
+          >
             <blockquote className="font-display text-xl md:text-2xl text-foreground leading-[1.05] flex-1">
               "{q.quote.toUpperCase()}"
             </blockquote>
             <figcaption className="mt-6 font-mono text-[11px] leading-tight">
-              <span className="block text-foreground">{q.name.toUpperCase()}</span>
-              <span className="block text-foreground/60">{q.city.toUpperCase()}</span>
+              <span className="block text-foreground">
+                {q.name.toUpperCase()}
+              </span>
+              <span className="block text-foreground/60">
+                {q.city.toUpperCase()}
+              </span>
             </figcaption>
           </figure>
         ))}
@@ -288,14 +345,18 @@ function Author() {
     <section className="px-6 md:px-10 max-w-[1400px] mx-auto pt-24 md:pt-32">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <div className="font-mono text-[11px] text-foreground/55 mb-6">AUTHOR</div>
+          <div className="font-mono text-[11px] text-foreground/55 mb-6">
+            AUTHOR
+          </div>
           <h2 className="font-display text-6xl md:text-8xl text-foreground leading-[0.9]">
-            PRIYA<br />SINGH
+            PRIYA
+            <br />
+            SINGH
           </h2>
           <p className="mt-8 text-lg text-foreground/80 leading-relaxed max-w-md">
-            With years of experience in hypnosis and emotional wellness, Priya founded
-            Together We Heal to guide individuals toward holistic transformation —
-            mind, body, and soul.
+            With years of experience in hypnosis and emotional wellness, Priya
+            founded Together We Heal to guide individuals toward holistic
+            transformation — mind, body, and soul.
           </p>
           <Link
             to="/contact"
@@ -321,7 +382,9 @@ function Journal() {
   return (
     <section className="px-6 md:px-10 max-w-[1400px] mx-auto pt-24 md:pt-32">
       <div className="flex items-end justify-between mb-8">
-        <h2 className="font-display text-5xl md:text-6xl text-foreground">BLOG</h2>
+        <h2 className="font-display text-5xl md:text-6xl text-foreground">
+          BLOG
+        </h2>
         <Link
           to="/blog"
           className="hidden md:inline-flex items-center gap-2 rounded-full border border-foreground/40 px-4 py-2 font-mono text-xs hover:bg-foreground hover:text-background transition-colors"
@@ -339,10 +402,17 @@ function Journal() {
             className="group rounded-2xl overflow-hidden bg-cream-deep block"
           >
             <div className="aspect-[16/10] overflow-hidden">
-              <img src={j.image} alt={j.title} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+              <img
+                src={j.image}
+                alt={j.title}
+                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
             </div>
             <div className="p-4">
-              <div className="font-mono text-[10px] text-foreground/55 mb-1.5">{j.cat.toUpperCase()}</div>
+              <div className="font-mono text-[10px] text-foreground/55 mb-1.5">
+                {j.cat.toUpperCase()}
+              </div>
               <h3 className="font-display text-lg md:text-xl text-foreground leading-[1]">
                 {j.title}
               </h3>

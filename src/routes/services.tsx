@@ -11,9 +11,16 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services — Together We Heal" },
-      { name: "description", content: "Hypnosis, regression therapy, behavioral transformation, and energy healing services." },
+      {
+        name: "description",
+        content:
+          "Hypnosis, regression therapy, behavioral transformation, and energy healing services.",
+      },
       { property: "og:title", content: "Services — Together We Heal" },
-      { property: "og:description", content: "Comprehensive healing services for mind, body, and soul." },
+      {
+        property: "og:description",
+        content: "Comprehensive healing services for mind, body, and soul.",
+      },
     ],
   }),
   component: ServicesPage,
@@ -31,14 +38,19 @@ type Service = {
 };
 
 const slugify = (s: string) =>
-  s.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  s
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 
 const groups: Service[] = [
   {
     num: "01",
     title: "Hypnosis Therapy",
     subtitle: "Subconscious Healing",
-    intro: "This is one of the core services, designed to work directly with the subconscious mind.",
+    intro:
+      "This is one of the core services, designed to work directly with the subconscious mind.",
     sections: [
       {
         heading: "What it does",
@@ -57,7 +69,8 @@ const groups: Service[] = [
   {
     num: "02",
     title: "Emotional & Mental Wellness Coaching",
-    intro: "A guided, supportive process to help individuals navigate life challenges.",
+    intro:
+      "A guided, supportive process to help individuals navigate life challenges.",
     sections: [
       {
         heading: "Focus areas",
@@ -78,7 +91,8 @@ const groups: Service[] = [
     num: "03",
     title: "Energy Healing",
     subtitle: "Aura & Vibrational Work",
-    intro: "This service focuses on clearing and balancing energetic blockages.",
+    intro:
+      "This service focuses on clearing and balancing energetic blockages.",
     sections: [
       {
         heading: "What it includes",
@@ -124,7 +138,8 @@ const groups: Service[] = [
   {
     num: "05",
     title: "Relationship Healing & Guidance",
-    intro: "Focused support for love, attachment patterns, and emotional connections.",
+    intro:
+      "Focused support for love, attachment patterns, and emotional connections.",
     sections: [
       {
         heading: "Covers",
@@ -201,7 +216,8 @@ const groups: Service[] = [
   {
     num: "09",
     title: "Mother's Womb Healing Experience",
-    intro: "A deeply immersive healing session that takes clients back to their earliest emotional imprint — the time in the mother's womb.",
+    intro:
+      "A deeply immersive healing session that takes clients back to their earliest emotional imprint — the time in the mother's womb.",
     sections: [
       {
         heading: "What it works on",
@@ -220,7 +236,8 @@ const groups: Service[] = [
   {
     num: "10",
     title: "Past Life Regression Therapy",
-    intro: "A guided hypnotic process that allows clients to access memories beyond their current lifetime.",
+    intro:
+      "A guided hypnotic process that allows clients to access memories beyond their current lifetime.",
     sections: [
       {
         heading: "What it explores",
@@ -239,7 +256,8 @@ const groups: Service[] = [
   {
     num: "11",
     title: "Connecting to the Higher Self",
-    intro: "A powerful inner alignment session focused on accessing one's highest wisdom and intuitive guidance.",
+    intro:
+      "A powerful inner alignment session focused on accessing one's highest wisdom and intuitive guidance.",
     sections: [
       {
         heading: "What it does",
@@ -258,13 +276,14 @@ const groups: Service[] = [
   {
     num: "12",
     title: "Foundation Metaphor Therapy",
-    intro: "A unique subconscious technique using guided visualization to understand and rebuild one's internal \"foundation.\"",
+    intro:
+      'A unique subconscious technique using guided visualization to understand and rebuild one\'s internal "foundation."',
     sections: [
       {
         heading: "What it uncovers",
         bullets: [
           "Core belief systems about self, life, and stability",
-          "Emotional \"cracks\" formed through past experiences",
+          'Emotional "cracks" formed through past experiences',
           "Hidden fears related to security, worth, and control",
         ],
       },
@@ -277,7 +296,8 @@ const groups: Service[] = [
   {
     num: "13",
     title: "Aura Scanning & Analysis",
-    intro: "An intuitive assessment of a client's energetic field to understand their current emotional and energetic state.",
+    intro:
+      "An intuitive assessment of a client's energetic field to understand their current emotional and energetic state.",
     sections: [
       {
         heading: "What it reveals",
@@ -304,7 +324,8 @@ const groups: Service[] = [
   {
     num: "14",
     title: "Opening Abundance through Earth Star Chakra Activation",
-    intro: "A grounding and energetic alignment session focused on activating the Earth Star Chakra, the energy center below the feet that connects you to stability, resources, and material flow.",
+    intro:
+      "A grounding and energetic alignment session focused on activating the Earth Star Chakra, the energy center below the feet that connects you to stability, resources, and material flow.",
     sections: [
       {
         heading: "What it works on",
@@ -347,7 +368,9 @@ function ServicesPage() {
       setActiveIdx(i);
       // Scroll to detail panel on mobile after selection from external link
       requestAnimationFrame(() => {
-        document.getElementById("service-detail")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        document
+          .getElementById("service-detail")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     }
   }, [service]);
@@ -356,7 +379,11 @@ function ServicesPage() {
 
   return (
     <PageShell>
-      <PageHeader eyebrow="What We Offer" title="Services" lead="Comprehensive healing services designed to transform your life from the inside out." />
+      <PageHeader
+        eyebrow="What We Offer"
+        title="Services"
+        lead="Comprehensive healing services designed to transform your life from the inside out."
+      />
       <section className="px-6 md:px-10 max-w-[1400px] mx-auto pb-16 grid md:grid-cols-[minmax(280px,360px)_1fr] gap-8 md:gap-12">
         {/* Left — vertical list of titles */}
         <nav className="md:sticky md:top-28 md:self-start">
@@ -374,7 +401,9 @@ function ServicesPage() {
                         : "md:border-transparent text-foreground/55 hover:text-foreground hover:md:border-foreground/30"
                     }`}
                   >
-                    <span className="font-mono text-[10px] mr-2 text-foreground/40">{g.num}</span>
+                    <span className="font-mono text-[10px] mr-2 text-foreground/40">
+                      {g.num}
+                    </span>
                     <span className="text-sm md:text-base">{g.title}</span>
                   </button>
                 </li>
@@ -384,8 +413,14 @@ function ServicesPage() {
         </nav>
 
         {/* Right — selected service detail */}
-        <article id="service-detail" key={active.num} className="rounded-3xl bg-cream-deep p-8 md:p-12 animate-in fade-in slide-in-from-right-2 duration-300 scroll-mt-24">
-          <div className="font-mono text-[11px] text-foreground/55 mb-6">{active.num} / SERVICE</div>
+        <article
+          id="service-detail"
+          key={active.num}
+          className="rounded-3xl bg-cream-deep p-8 md:p-12 animate-in fade-in slide-in-from-right-2 duration-300 scroll-mt-24"
+        >
+          <div className="font-mono text-[11px] text-foreground/55 mb-6">
+            {active.num} / SERVICE
+          </div>
           <h2 className="font-display text-4xl md:text-5xl text-foreground mb-2 leading-[0.95]">
             {active.title.toUpperCase()}
           </h2>

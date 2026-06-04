@@ -1,38 +1,39 @@
 // api/send-email.js
 // This file goes in the /api folder at your project root (NOT in /src)
 
-const { Resend } = require('resend');
+const { Resend } = require("resend");
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 module.exports = async (req, res) => {
   // Enable CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   // Handle preflight request
-  if (req.method === 'OPTIONS') {
+  if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 
   // Only allow POST requests
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
-    const { fullName, email, phone, message, preferredDate, submittedAt } = req.body;
+    const { fullName, email, phone, message, preferredDate, submittedAt } =
+      req.body;
 
     // Validate required fields
     if (!fullName || !email || !phone) {
-      return res.status(400).json({ error: 'Missing required fields' });
+      return res.status(400).json({ error: "Missing required fields" });
     }
 
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: 'onboarding@resend.dev', // Replace with your verified domain
-      to: 'jithinkjacob@live.com',
+      from: "onboarding@resend.dev", // Replace with your verified domain
+      to: "jithinkjacob@live.com",
       replyTo: email,
       subject: `New Consultation Request from ${fullName}`,
       html: `
@@ -78,14 +79,17 @@ module.exports = async (req, res) => {
                 
                 <div class="field">
                   <div class="label">💬 Message:</div>
-                  <div class="value">${message || 'No additional message provided'}</div>
+                  <div class="value">${message || "No additional message provided"}</div>
                 </div>
                 
                 <div class="footer">
-                  <p>Submitted on: ${new Date(submittedAt).toLocaleString('en-US', { 
-                    dateStyle: 'full', 
-                    timeStyle: 'short' 
-                  })}</p>
+                  <p>Submitted on: ${new Date(submittedAt).toLocaleString(
+                    "en-US",
+                    {
+                      dateStyle: "full",
+                      timeStyle: "short",
+                    },
+                  )}</p>
                   <p><strong>Action Required:</strong> Please reply to ${email} to schedule the consultation.</p>
                 </div>
               </div>
@@ -96,19 +100,21 @@ module.exports = async (req, res) => {
     });
 
     if (error) {
-      console.error('Resend API error:', error);
-      return res.status(400).json({ error: error.message || 'Failed to send email' });
+      console.error("Resend API error:", error);
+      return res
+        .status(400)
+        .json({ error: error.message || "Failed to send email" });
     }
 
-    return res.status(200).json({ 
-      success: true, 
-      message: 'Email sent successfully',
-      data 
+    return res.status(200).json({
+      success: true,
+      message: "Email sent successfully",
+      data,
     });
   } catch (error) {
-    console.error('Server error:', error);
-    return res.status(500).json({ 
-      error: 'Internal server error. Please try again later.' 
+    console.error("Server error:", error);
+    return res.status(500).json({
+      error: "Internal server error. Please try again later.",
     });
   }
 };

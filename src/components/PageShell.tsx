@@ -3,7 +3,13 @@ import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 import { ContactCTA } from "./ContactCTA";
 
-export function PageShell({ children, hideContactCTA = false }: { children: ReactNode; hideContactCTA?: boolean }) {
+export function PageShell({
+  children,
+  hideContactCTA = false,
+}: {
+  children: ReactNode;
+  hideContactCTA?: boolean;
+}) {
   return (
     <div className="relative flex min-h-screen flex-col bg-background text-foreground">
       <SiteHeader />

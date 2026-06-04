@@ -1,10 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHeader } from "@/components/PageShell";
-import { posts, serviceTagToCategory, type BlogCategory } from "@/data/blog-posts";
+import {
+  posts,
+  serviceTagToCategory,
+  type BlogCategory,
+} from "@/data/blog-posts";
 
 type BlogSearch = { tag?: string };
 
-const categories: BlogCategory[] = ["Inner Work", "Energy", "Regression", "Transformation"];
+const categories: BlogCategory[] = [
+  "Inner Work",
+  "Energy",
+  "Regression",
+  "Transformation",
+];
 
 export const Route = createFileRoute("/blog/")({
   validateSearch: (search: Record<string, unknown>): BlogSearch => ({
@@ -13,9 +22,16 @@ export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       { title: "Blog — Together We Heal" },
-      { name: "description", content: "Reflections, practices, and guidance on hypnosis, inner child work, and energy healing." },
+      {
+        name: "description",
+        content:
+          "Reflections, practices, and guidance on hypnosis, inner child work, and energy healing.",
+      },
       { property: "og:title", content: "Blog — Together We Heal" },
-      { property: "og:description", content: "Reflections and practices for spiritual healing." },
+      {
+        property: "og:description",
+        content: "Reflections and practices for spiritual healing.",
+      },
     ],
   }),
   component: BlogPage,
@@ -25,10 +41,13 @@ function BlogPage() {
   const { tag } = Route.useSearch();
   // The "tag" can be either a service tag (Core/Depth/Change/Energy) or a category name.
   const activeCategory: BlogCategory | null = tag
-    ? (serviceTagToCategory[tag] ?? (categories.includes(tag as BlogCategory) ? (tag as BlogCategory) : null))
+    ? (serviceTagToCategory[tag] ??
+      (categories.includes(tag as BlogCategory) ? (tag as BlogCategory) : null))
     : null;
 
-  const visiblePosts = activeCategory ? posts.filter((p) => p.cat === activeCategory) : posts;
+  const visiblePosts = activeCategory
+    ? posts.filter((p) => p.cat === activeCategory)
+    : posts;
 
   return (
     <PageShell>
@@ -79,14 +98,23 @@ function BlogPage() {
             className="group rounded-3xl overflow-hidden bg-cream-deep block"
           >
             <div className="aspect-[16/10] overflow-hidden">
-              <img src={p.image} alt={p.title} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+              <img
+                src={p.image}
+                alt={p.title}
+                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
             </div>
             <div className="p-6">
-              <div className="font-mono text-[11px] text-foreground/55 mb-3">{p.cat.toUpperCase()}</div>
+              <div className="font-mono text-[11px] text-foreground/55 mb-3">
+                {p.cat.toUpperCase()}
+              </div>
               <h3 className="font-display text-2xl md:text-3xl text-foreground leading-[0.95]">
                 {p.title}
               </h3>
-              <p className="mt-3 text-sm text-foreground/70 leading-relaxed">{p.excerpt}</p>
+              <p className="mt-3 text-sm text-foreground/70 leading-relaxed">
+                {p.excerpt}
+              </p>
               <span className="mt-4 inline-block font-mono text-[11px] text-foreground/70 group-hover:text-foreground">
                 READ MORE →
               </span>
